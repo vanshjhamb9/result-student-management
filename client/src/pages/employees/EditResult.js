@@ -152,6 +152,10 @@ function ResultInfo() {
     }
   }, [result]);
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    // Handle the file as needed (e.g., save it to state or form data)
+  };
   return (
     <div>
       <PageTitle title="Result Info" />
@@ -198,6 +202,7 @@ function ResultInfo() {
                     <th>Subject</th>
                     <th>Total Marks</th>
                     <th>Obtained Marks</th>
+                    <th>Answersheet</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -218,6 +223,9 @@ function ResultInfo() {
                           }}
                         />
                       </td>
+                      <td>
+                    <input type="file" onChange={handleFileChange} />
+                  </td>
                     </tr>
                   ))}
                 </tbody>

@@ -29,6 +29,7 @@ const studentSchema = new mongoose.Schema({
     type: Array,
     required: [true, "Please provide the 'results' field."],
   },
+  
 });
 
 module.exports = mongoose.model("students", studentSchema);

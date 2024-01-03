@@ -80,6 +80,23 @@ function ResultCheck() {
     console.log(obtainedMarks);
     return (obtainedMarks / totalMarks) * 100;
   };
+
+  const downloadAnswerSheet = (subjectName) => {
+    if (studentResult && studentResult.subjects) {
+      const subject = studentResult.subjects.find(
+        (subject) => subject.name === subjectName
+      );
+  
+      if (subject && subject.file) {
+        const fileUrl = subject.file;
+  
+        window.open(fileUrl, "_blank");
+      } else {
+        toast.error("Answer sheet not available for this subject.");
+      }
+    }
+  };
+  
   return (
     <div className="layout">
       <div className="header d-flex justify-content-between align-items-center">
@@ -140,6 +157,7 @@ function ResultCheck() {
                 <th>Subject</th>
                 <th>Total Marks</th>
                 <th>Obtained Marks</th>
+                <th>Answersheet</th>
               </tr>
             </thead>
             <tbody>
@@ -148,6 +166,19 @@ function ResultCheck() {
                   <td>{subject.name}</td>
                   <td>{subject.totalMarks}</td>
                   <td>{studentResult.obtainedMarks[subject?.name] || 0}</td>
+                  <td>
+                  {subject.file ? (
+    <button
+      className="link-button"
+      style={{ color: "blue", textDecoration: "underline", cursor: "pointer" }}
+      onClick={() => downloadAnswerSheet(subject.name)}
+    >
+      View/Download
+    </button>
+  ) : (
+    <div>File not uploaded</div>
+  )}
+                  </td>
                 </tr>
               ))}
             </tbody>
