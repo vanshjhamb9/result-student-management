@@ -19,7 +19,7 @@ app.use("/api/student/", studentRoute);
 app.use("/api/results/", resultsRoute);
 
 
-const port = process.env.PORT || 4001;
+const port = process.env.PORT || 4000;
 
 // deployment config
 const path = require("path");
